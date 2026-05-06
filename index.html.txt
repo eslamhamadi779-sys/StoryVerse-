@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة إسلام الهاشمي | عالم الإبداع ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary: #ff6b9d; 
+            --secondary: #a8e6cf; 
+            --dark: #1a1a2e; 
+            --light: #f8f9fa; 
+            --accent: #ffd93d; 
+            --magic: #8338ec;
+            --glow: #00d4ff;
+            --dream: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            --dream2: linear-gradient(45deg, #a8edea, #fed6e3, #a8edea);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--dark); 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* تأثيرات سحرية */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 61, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 61, 0.9), 0 0 60px rgba(255, 215, 61, 0.6); }
+        }
+
+        /* شريط الأعلام العربية المتحرك */
+        .flags-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(90deg, #000, #333, #000);
+            overflow: hidden;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+
+        .flags-scroll {
+            display: flex;
+            animation: scrollFlags 60s linear infinite;
+            height: 100%;
+        }
+
+        .flag {
+            height: 40px;
+            margin: 0 20px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            animation: flagWave 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes scrollFlags {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes flagWave {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+
+        /* الساعة والتاريخ السحرية */
+        .magic-clock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.5);
+            z-index: 1000;
+            animation: pulseGlow 3s ease-in-out infinite;
+            font-weight: 700;
+            text-align: center;
+            min-width: 220px;
+        }
+
+        .clock-time { font-size: 2.2em; color: var(--magic); margin-bottom: 8px; }
+        .clock-date { font-size: 1.1em; color: var(--dark); }
+        .clock-day { font-size: 0.9em; color: #666; margin-top: 5px; }
+
+        /* الهيدر السحري */
+        .header { 
+            background: var(--dream);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: white; 
+            text-align: center; 
+            padding: 80px 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '✨ عالم الأحلام ✨';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: sparkle 4s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .header h1 { 
+            font-size: 3.5em; 
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* القائمة السحرية */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 0 0 25px 25px;
+        }
+        
+        .nav-item { 
+            padding: 12px 30px; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4)); 
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: 700;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-item:hover::before { left: 100%; }
+        .nav-item.active { 
+            background: var(--dream2);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+            border-color: var(--accent);
+            color: #333;
+        }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 20px; }
+
+        /* لوحة التحكم السحرية */
+        .admin-panel { 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px; 
+            border-radius: 25px; 
+            margin-bottom: 40px; 
+            display: none; 
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            animation: slideIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .admin-panel::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            border-radius: 28px;
+            z-index: -1;
+        }
+
+        input[type="password"] {
+            font-family: 'Arial', sans-serif !important;
+            font-size: 18px;
+            letter-spacing: 4px;
+            -webkit-text-security: disc;
+        }
+
+        /* الكروت السحرية */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .card { 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--dream);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { 
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        .card-img { 
+            height: 220px; 
+            background-size: cover; 
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img::after {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            animation: sparkle 3s infinite;
+            opacity: 0.7;
+        }
+
+        .tag { 
+            background: var(--dream2);
+            color: #333;
+            padding: 6px 18px; 
+            border-radius: 20px; 
+            font-size: 0.85em; 
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* روابط السوشيال */
+        .links-section { 
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px; 
+            border-radius: 30px; 
+            text-align: center; 
+            margin-top: 60px; 
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .social-link { 
+            display: inline-block; 
+            margin: 15px; 
+            padding: 18px 35px; 
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            transition: all 0.4s ease;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .social-link:hover { 
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255,107,157,0.4);
+        }
+
+        /* واتساب */
+        .whatsapp-float { 
+            position: fixed; 
+            bottom: 80px; 
+            left: 20px; 
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white; 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 32px; 
+            text-decoration: none; 
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4); 
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Modal */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 2000; 
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content { 
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(30px);
+            max-width: 900px; 
+            margin: 50px auto; 
+            padding: 50px; 
+            border-radius: 30px; 
+            position: relative; 
+            max-height: 85vh; 
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26,26,46,0.95);
+            backdrop-filter: blur(20px);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            border-top: 5px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            inset: -5px 0 0 0;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 0 0 25px 25px;
+            z-index: -1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(50px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .btn {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .nav-menu { padding: 15px; gap: 8px; }
+            .nav-item { padding: 10px 20px; font-size: 0.9em; }
+            .magic-clock { right: 10px; left: 10px; margin: 0 10px; top: 10px; }
+            .flags-bar { height: 40px; }
+            .flag { height: 30px; margin: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- الساعة السحرية -->
+<div class="magic-clock" id="magicClock">
+    <div class="clock-time" id="clockTime">--:--:--</div>
+    <div class="clock-date" id="clockDate">----------</div>
+    <div class="clock-day" id="clockDay">----------</div>
+</div>
+
+<!-- شريط الأعلام العربية -->
+<div class="flags-bar">
+    <div class="flags-scroll">
+        <!-- علم مصر -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #000 66.66%, #000 100%);"></div>
+        <!-- علم السعودية -->
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #0C3B77 33.33%, #0C3B77 66.66%, #fff 66.66%, #fff 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #0C3B77 0deg 120deg, #fff 120deg 240deg, #D52B24 240deg 360deg);"></div>
+        <!-- علم الإمارات -->
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #128C46 33.33%, #128C46 66.66%, #000 66.66%, #000 100%);"></div>
+        <!-- علم الأردن -->
+        <div class="flag" style="background: linear-gradient(to bottom, #000 0%, #000 25%, #fff 25%, #fff 50%, #CE1126 50%, #CE1126 75%, #000 75%, #000 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #fff 0deg 90deg, #000 90deg 270deg, #CE1126 270deg 360deg);"></div>
+        <!-- علم لبنان -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #ED2939 66.66%, #ED2939 100%);"></div>
+        <!-- علم الكويت -->
+        <div class="flag" style="background: linear-gradient(to bottom, #FFF 0%, #FFF 50%, #0C3B77 50%, #0C3B77 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #FFF 0deg 90deg, #000 90deg 270deg, #CE1126 270deg 360deg);"></div>
+        <!-- تكرار الأعلام -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #000 66.66%, #000 100%);"></div>
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #0C3B77 33.33%, #0C3B77 66.66%, #fff 66.66%, #fff 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #0C3B77 0deg 120deg, #fff 120deg 240deg, #D52B24 240deg 360deg);"></div>
+    </div>
+</div>
+
+<header class="header">
+    <h1><i class="fas fa-magic"></i> موقع قصص لا تنتهي <i class="fas fa-magic"></i></h1>
+    <p>مع إسلام الهاشمي... رحلة سحرية في عالم الأحلام والخيال ✨🌟</p>
+</header>
+
+<nav class="nav-menu">
+    <div class="nav-item active" onclick="filterContent('الكل', this)"><i class="fas fa-home"></i> الكل</div>
+    <div class="nav-item" onclick="filterContent('قصص أطفال', this)"><i class="fas fa-child"></i> قصص أطفال</div>
+    <div class="nav-item" onclick="filterContent('قصص قصيرة', this)"><i class="fas fa-book-open"></i> قصص قصيرة</div>
+    <div class="nav-item" onclick="filterContent('مقالات', this)"><i class="fas fa-newspaper"></i> مقالات</div>
+    <div class="nav-item" onclick="filterContent('روايات', this)"><i class="fas fa-book"></i> روايات</div>
+    <div class="nav-item" onclick="filterContent('فلسفة', this)"><i class="fas fa-brain"></i> فلسفة</div>
+    <div class="nav-item" onclick="filterContent('شعر واغاني', this)"><i class="fas fa-music"></i> شعر وأغاني</div>
+    <div class="nav-item" onclick="filterContent('اديان', this)"><i class="fas fa-pray"></i> أديان</div>
+    <div class="nav-item" onclick="filterContent('تكنولوجيا', this)"><i class="fas fa-laptop"></i> تكنولوجيا</div>
+</nav>
+
+<div class="container">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <button class="btn" onclick="toggleAdmin()">
+            <i class="fas fa-cog fa-spin"></i> لوحة التحكم السحرية
+        </button>
+    </div>
+
+    <!-- لوحة الإدارة -->
+    <div class="admin-panel" id="adminPanel">
+        <h3 style="margin-bottom:20px; color:var(--magic); text-align:center;">
+            <i class="fas fa-star-and-crescent"></i> إضافة عمل إبداعي جديد ✨
+        </h3>
+        <div class="form-group">
+            <input type="password" id="adminPass" placeholder="••••••••••••" style="font-size:20px;">
+            <small style="color:#666; font-size:0.8em;">💡 كلمة السر مخفية تماماً</small>
+        </div>
+        <div class="form-group">
+            <select id="itemCat" style="padding:15px; font-weight:600;">
+                <option value="قصص أطفال">🧸 قصص أطفال</option>
+                <option value="قصص قصيرة">📖 قصص قصيرة</option>
+                <option value="مقالات">📰 مقالات</option>
+                <option value="روايات">📚 روايات</option>
+                <option value="فلسفة">🧠 فلسفة</option>
+                <option value="شعر واغاني">🎵 شعر وأغاني</option>
+                <option value="اديان">🕌 أديان</option>
+                <option value="تكنولوجيا">💻 تكنولوجيا</option>
+            </select>
+        </div>
+        <div class="form-group"><input type="text" id="itemTitle" placeholder="عنوان العمل السحري ✨"></div>
+        <div class="form-group"><input type="text" id="itemImg" placeholder="رابط صورة الغلاف (اختياري)"></div>
+        <div class="form-group"><textarea id="itemContent" rows="6" placeholder="اكتب القصة أو المقال الكامل هنا... 🌟"></textarea></div>
+        <button class="btn" style="width:100%; font-size:1.1em;" onclick="saveData()">
+            <i class="fas fa-rocket"></i> نشر العمل السحري الآن!
+        </button>
+    </div>
+
+    <div class="grid" id="mainGrid"></div>
+
+    <!-- روابط التواصل -->
+    <div class="links-section">
+        <h3 style="color:var(--magic); margin-bottom:30px;">
+            <i class="fas fa-handshake"></i> تواصل مع الكاتب السحري 📚✨
+        </h3>
+        <a href="https://www.facebook.com/eslam.bahrya/" target="_blank" class="social-link">
+            <i class="fab fa-facebook-f"></i> فيسبوك
+        </a>
+        <a href="https://www.ktobati.com/author/%D8%A7%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A-%D8%A7%D9%84%D8%AD%D8%A7%D9%85%D8%AF%D9%8A" target="_blank" class="social-link">
+            <i class="fas fa-book"></i> كتوباتي
+        </a>
+        <a href="https://www.noor-book.com/%D9%83%D8%AA%D8%A8-%D8%A7%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A-%D8%A7%D9%84%D8%AD%D8%A7%D9%85%D8%AF%D9%8A-pdf" target="_blank" class="social-link">
+            <i class="fas fa-lightbulb"></i> نور الكتب
+        </a>
+    </div>
+</div>
+
+<a href="https://wa.me/201005727778?text=مرحباً%20إسلام%20الهاشمي!%20أنا%20معجب%20بأعمالك%20السحرية%20وأود%20التواصل%20معك ✨" 
+   class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div id="viewModal" class="modal">
+    <div class="modal-content">
+        <span style="cursor:pointer; color:var(--primary); font-weight:700; font-size:1.5em; float:left;" onclick="closeModal()">
+            <i class="fas fa-times-circle"></i> إغلاق
+        </span>
+        <h2 id="viewTitle" style="margin:30px 0; color:var(--magic); font-size:2.2em;"></h2>
+        <div id="viewText" style="white-space: pre-wrap; font-size:1.2em; line-height:2; color:#333;"></div>
+    </div>
+</div>
+
+<footer>
+    <p><i class="fas fa-copyright"></i> جميع الحقوق محفوظة © 2026 | الكاتب إسلام الهاشمي</p>
+    <p style="font-size: 1em; margin-top: 15px; color: var(--accent);">
+        <i class="fas fa-magic"></i> موقع قصص لا تنتهي - رحلتك السحرية في عالم الأحلام ✨🌟
+    </p>
+</footer>
+
+<script>
+    const PASS = "/ #$#$"; // كلمة السر المخفية والمحدثة
+    
+    // محتوى افتراضي
+    const defaultData = [
+        {
+            id: 1,
+            category: "قصص أطفال",
+            title: "الأرنب الذكي والجزرة الذهبية ✨",
+            image: "https://picsum.photos/id/1025/400/250",
+            content: "كان يا ما كان، في غابة سحرية بعيدة كان هناك أرنب صغير يحب المغامرة...\n\n🌟 القصة الكاملة مليئة بالمفاجآت والسحر!"
+        },
+        {
+            id: 2,
+            category: "مقالات",
+            title: "مستقبل الذكاء الاصطناعي والخيال",
+            image: "https://picsum.photos/id/0/400/250",
+            content: "هل سيحل الذكاء الاصطناعي محل الوعي البشري؟ في هذا المقال نغوص في عالم المستقبل...\n\n✨ استكشاف سحري للإمكانيات!"
+        }
+    ];
+
+    let database = JSON.parse(localStorage.getItem('eslamData')) || defaultData;
+
+    // الساعة والتاريخ بتوقيت مصر
+    function updateClock() {
+        const now = new Date();
+        
+        // ضبط التوقيت على مصر UTC+2/+3
+        const egyptTime = new Date(now.toLocaleString("en-US", {timeZone: "Africa/Cairo"}));
+        
+        const timeString = egyptTime.toLocaleTimeString('ar-EG', {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+        const dateString = egyptTime.toLocaleDateString('ar-EG', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('clockTime').textContent = timeString;
+        document.getElementById('clockDate').textContent = dateString;
+        document.getElementById('clockDay').textContent = 'مصر 🇪🇬';
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleAdmin() {
+        const panel = document.getElementById('adminPanel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        if (panel.style.display === 'block') {
+            document.getElementById('adminPass').focus();
+        }
+    }
+
+    function saveData() {
+        const passInput = document.getElementById('adminPass').value;
+        if(passInput !== PASS) {
+            alert("❌ كلمة المرور غير صحيحة!\n💡 تأكد من كتابة: / #$#$");
+            document.getElementById('adminPass').style.borderColor = '#ff4444';
+            setTimeout(() => {
+                document.getElementById('adminPass').style.borderColor = '';
+            }, 2000);
+            return;
+        }
+        
+        const newItem = {
+            category: document.getElementById('itemCat').value,
+            title: document.getElementById('itemTitle').value,
+            image: document.getElementById('itemImg').value || `https://picsum.photos/400/250?random=${Date.now()}`,
+            content: document.getElementById('itemContent').value,
+            id: Date.now()
+        };
+
+        if(!newItem.title || !newItem.content) {
+            alert("⚠️ يرجى كتابة العنوان والنص الكامل!");
+            return;
+        }
+
+        database.push(newItem);
+        localStorage.setItem('eslamData', JSON.stringify(database));
+        alert("🎉 تم النشر بنجاح! ✨ العمل الآن في عالم الأحلام");
+        document.getElementById('adminPanel').style.display = 'none';
+        document.getElementById('adminPass').value = '';
+        document.getElementById('itemTitle').value = '';
+        document.getElementById('itemImg').value = '';
+        document.getElementById('itemContent').value = '';
+        render();
+    }
+
+    function render(data = database) {
+        const grid = document.getElementById('mainGrid');
+        grid.innerHTML = data.map(item => `
+            <div class="card">
+                <div class="card-img" style="background-image: url('${item.image}')"></div>
+                <div class="card-body" style="padding:25px;">
+                    <span class="tag">${item.category}</span>
+                    <h3 style="margin:15px 0 20px 0; color:var(--dark); font-size:1.4em;">${item.title}</h3>
+                    <button onclick="openItem(${item.id})" class="btn" style="width:100%; margin-bottom:10px;">
+                        <i class="fas fa-eye"></i> إقرأ القصة السحرية
+                    </button>
+                    <button onclick="deleteItem(${item.id})" style="color:#ff6b6b; background:none; border:none; width:100%; font-size:12px; cursor:pointer; font-weight:600;">
+                        <i class="fas fa-trash"></i> حذف
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterContent(cat, el) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        if (cat === 'الكل') render(database);
+        else render(database.filter(i => i.category === cat));
+    }
+
+    function openItem(id) {
+        const item = database.find(i => i.id === id);
+        document.getElementById('viewTitle').innerHTML = item.title + ' ✨';
+        document.getElementById('viewText').innerText = item.content;
+        document.getElementById('viewModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() { 
+        document.getElementById('viewModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function deleteItem(id) {
+        const pass = prompt("🔐 كلمة المرور للحذف (نفس كلمة النشر):");
+        if(pass === PASS) {
+            database = database.filter(i => i.id !== id);
+            localStorage.setItem('eslamData', JSON.stringify(database));
+            render();
+            alert("✅ تم الحذف بنجاح!");
+        } else {
+            alert("❌ كلمة المرور خاطئة!");
+        }
+    }
+
+    // إغلاق المودال عند الضغط خارجها
+    window.onclick = function(event) {
+        const modal = document.getElementById('viewModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    // تشغيل الموقع
+    render();
+</script>
+</body>
+</html>
