@@ -68,6 +68,43 @@
             50% { box-shadow: 0 0 40px rgba(255, 215, 61, 0.9), 0 0 60px rgba(255, 215, 61, 0.6); }
         }
 
+        /* شريط الأعلام العربية المتحرك */
+        .flags-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(90deg, #000, #333, #000);
+            overflow: hidden;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+
+        .flags-scroll {
+            display: flex;
+            animation: scrollFlags 60s linear infinite;
+            height: 100%;
+        }
+
+        .flag {
+            height: 40px;
+            margin: 0 20px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            animation: flagWave 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes scrollFlags {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes flagWave {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+
         /* الساعة والتاريخ السحرية */
         .magic-clock {
             position: fixed;
@@ -75,20 +112,20 @@
             right: 20px;
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(20px);
-            padding: 20px;
-            border-radius: 25px;
+            padding: 10px;
+            border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 2px solid rgba(255,255,255,0.5);
             z-index: 1000;
             animation: pulseGlow 3s ease-in-out infinite;
             font-weight: 700;
             text-align: center;
-            min-width: 220px;
+            min-width: 150px;
         }
 
-        .clock-time { font-size: 2.2em; color: var(--magic); margin-bottom: 8px; }
-        .clock-date { font-size: 1.1em; color: var(--dark); }
-        .clock-day { font-size: 0.9em; color: #666; margin-top: 5px; }
+        .clock-time { font-size: 1.5em; color: var(--magic); margin-bottom: 8px; }
+        .clock-date { font-size: 0.9em; color: var(--dark); }
+        .clock-day { font-size: 0.7em; color: #666; margin-top: 5px; }
 
         /* الهيدر السحري */
         .header { 
@@ -194,29 +231,6 @@
             background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
             border-radius: 28px;
             z-index: -1;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 15px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            background: rgba(255,255,255,0.9);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--magic);
-            box-shadow: 0 0 20px rgba(131,56,236,0.3);
-            transform: translateY(-2px);
         }
 
         input[type="password"] {
@@ -412,8 +426,6 @@
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            width: 100%;
-            font-size: 1.1em;
         }
 
         .btn:hover {
@@ -421,24 +433,21 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .btn-danger {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e) !important;
-            font-size: 0.9em !important;
-            padding: 10px !important;
-        }
-
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
         /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2.5em; }
-            .nav-menu { padding: 15px; gap: 8px; }
-            .nav-item { padding: 10px 20px; font-size: 0.9em; }
-            .magic-clock { right: 10px; left: 10px; margin: 0 10px; top: 10px; }
-        }
+       @media (max-width: 768px) {
+    .magic-clock { 
+        right: 10px;
+        left: auto;
+        top: 10px;
+        padding: 8px;
+        min-width: 120px;
+    }
+
+    .clock-time { font-size: 1.2em; }
+    .clock-date { font-size: 0.8em; }
+    .clock-day { font-size: 0.7em; }
+ }
+      
     </style>
 </head>
 <body>
@@ -448,6 +457,31 @@
     <div class="clock-time" id="clockTime">--:--:--</div>
     <div class="clock-date" id="clockDate">----------</div>
     <div class="clock-day" id="clockDay">----------</div>
+</div>
+
+<!-- شريط الأعلام العربية -->
+<div class="flags-bar">
+    <div class="flags-scroll">
+        <!-- علم مصر -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #000 66.66%, #000 100%);"></div>
+        <!-- علم السعودية -->
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #0C3B77 33.33%, #0C3B77 66.66%, #fff 66.66%, #fff 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #0C3B77 0deg 120deg, #fff 120deg 240deg, #D52B24 240deg 360deg);"></div>
+        <!-- علم الإمارات -->
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #128C46 33.33%, #128C46 66.66%, #000 66.66%, #000 100%);"></div>
+        <!-- علم الأردن -->
+        <div class="flag" style="background: linear-gradient(to bottom, #000 0%, #000 25%, #fff 25%, #fff 50%, #CE1126 50%, #CE1126 75%, #000 75%, #000 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #fff 0deg 90deg, #000 90deg 270deg, #CE1126 270deg 360deg);"></div>
+        <!-- علم لبنان -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #ED2939 66.66%, #ED2939 100%);"></div>
+        <!-- علم الكويت -->
+        <div class="flag" style="background: linear-gradient(to bottom, #FFF 0%, #FFF 50%, #0C3B77 50%, #0C3B77 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #FFF 0deg 90deg, #000 90deg 270deg, #CE1126 270deg 360deg);"></div>
+        <!-- تكرار الأعلام -->
+        <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #000 66.66%, #000 100%);"></div>
+        <div class="flag" style="background: linear-gradient(to bottom, #fff 0%, #fff 33.33%, #0C3B77 33.33%, #0C3B77 66.66%, #fff 66.66%, #fff 100%), 
+                                   conic-gradient(from 0deg at 50% 50%, #0C3B77 0deg 120deg, #fff 120deg 240deg, #D52B24 240deg 360deg);"></div>
+    </div>
 </div>
 
 <header class="header">
@@ -480,11 +514,11 @@
             <i class="fas fa-star-and-crescent"></i> إضافة عمل إبداعي جديد ✨
         </h3>
         <div class="form-group">
-            <input type="password" id="adminPass" placeholder="••••••••••••" autocomplete="off">
+            <input type="password" id="adminPass" placeholder="••••••••••••" style="font-size:20px;">
             <small style="color:#666; font-size:0.8em;">💡 كلمة السر مخفية تماماً</small>
         </div>
         <div class="form-group">
-            <select id="itemCat">
+            <select id="itemCat" style="padding:15px; font-weight:600;">
                 <option value="قصص أطفال">🧸 قصص أطفال</option>
                 <option value="قصص قصيرة">📖 قصص قصيرة</option>
                 <option value="مقالات">📰 مقالات</option>
@@ -495,16 +529,10 @@
                 <option value="تكنولوجيا">💻 تكنولوجيا</option>
             </select>
         </div>
-        <div class="form-group">
-            <input type="text" id="itemTitle" placeholder="عنوان العمل السحري ✨">
-        </div>
-        <div class="form-group">
-            <input type="text" id="itemImg" placeholder="رابط صورة الغلاف (اختياري)">
-        </div>
-        <div class="form-group">
-            <textarea id="itemContent" rows="6" placeholder="اكتب القصة أو المقال الكامل هنا... 🌟"></textarea>
-        </div>
-        <button class="btn" id="saveBtn" onclick="saveData()">
+        <div class="form-group"><input type="text" id="itemTitle" placeholder="عنوان العمل السحري ✨"></div>
+        <div class="form-group"><input type="text" id="itemImg" placeholder="رابط صورة الغلاف (اختياري)"></div>
+        <div class="form-group"><textarea id="itemContent" rows="6" placeholder="اكتب القصة أو المقال الكامل هنا... 🌟"></textarea></div>
+        <button class="btn" style="width:100%; font-size:1.1em;" onclick="saveData()">
             <i class="fas fa-rocket"></i> نشر العمل السحري الآن!
         </button>
     </div>
@@ -551,190 +579,33 @@
 </footer>
 
 <script>
-    // المتغيرات الأساسية
-    const PASS = "#$#$"; // ⚠️ كلمة السر مرئية في الكود - للإنتاج استخدم backend
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQPdoPR9DBtbZFE0IWv4YV7oIWpl8PJNgBA4wIX_a6xGsrmaLcOgT4OcFQZSVBdIFi5Q/exec";
+    const PASS = "/ #$#$"; // كلمة السر المخفية والمحدثة
     
-    let database = [];
-
-    // تحميل البيانات من Google Sheets مع الـ backup المحلي
-    async function loadData() {
-        try {
-            console.log("🔄 جاري تحميل البيانات من Google Sheets...");
-            const response = await fetch(SCRIPT_URL);
-            
-            if (!response.ok) throw new Error("فشل الاتصال بالسيرفر");
-
-            const data = await response.json();
-            database = data;
-            
-            // حفظ نسخة احتياطية محلية
-            localStorage.setItem('eslamDataBackup', JSON.stringify(database));
-            
-            console.log("✅ تم تحميل البيانات بنجاح:", database.length, "عنصر");
-            render();
-            
-        } catch (error) {
-            console.error("❌ خطأ في جلب البيانات:", error);
-            
-            // استخدام النسخة المحلية كبديل
-            const backup = localStorage.getItem('eslamDataBackup');
-            if (backup) {
-                database = JSON.parse(backup);
-                console.log("📱 استخدام النسخة المحلية:", database.length, "عنصر");
-            }
-            render();
+    // محتوى افتراضي
+    const defaultData = [
+        {
+            id: 1,
+            category: "قصص أطفال",
+            title: "الأرنب الذكي والجزرة الذهبية ✨",
+            image: "https://picsum.photos/id/1025/400/250",
+            content: "كان يا ما كان، في غابة سحرية بعيدة كان هناك أرنب صغير يحب المغامرة...\n\n🌟 القصة الكاملة مليئة بالمفاجآت والسحر!"
+        },
+        {
+            id: 2,
+            category: "مقالات",
+            title: "مستقبل الذكاء الاصطناعي والخيال",
+            image: "https://picsum.photos/id/0/400/250",
+            content: "هل سيحل الذكاء الاصطناعي محل الوعي البشري؟ في هذا المقال نغوص في عالم المستقبل...\n\n✨ استكشاف سحري للإمكانيات!"
         }
-    }
+    ];
 
-    // حفظ البيانات في Google Sheets + localStorage
-    async function saveData() {
-        const passInput = document.getElementById('adminPass').value;
-        if(passInput !== PASS) {
-            alert("❌ كلمة المرور غير صحيحة!");
-            document.getElementById('adminPass').style.borderColor = '#ff4444';
-            setTimeout(() => {
-                document.getElementById('adminPass').style.borderColor = '';
-            }, 2000);
-            return;
-        }
-        
-        const newItem = {
-            category: document.getElementById('itemCat').value,
-            title: document.getElementById('itemTitle').value,
-            image: document.getElementById('itemImg').value || `https://picsum.photos/400/250?random=${Date.now()}`,
-            content: document.getElementById('itemContent').value,
-            id: Date.now(),
-            timestamp: new Date().toISOString()
-        };
+    let database = JSON.parse(localStorage.getItem('eslamData')) || defaultData;
 
-        if(!newItem.title || !newItem.content) {
-            alert("⚠️ يرجى كتابة العنوان والنص الكامل!");
-            return;
-        }
-
-        // إظهار حالة التحميل
-        const saveBtn = document.getElementById('saveBtn');
-        const originalText = saveBtn.innerHTML;
-        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
-        saveBtn.disabled = true;
-        document.body.classList.add('loading');
-
-        try {
-            // 1. إرسال لـ Google Sheets
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newItem)
-            });
-            
-            // 2. إضافة محلياً للسرعة
-            database.unshift(newItem); // إضافة في البداية للترتيب الزمني
-            localStorage.setItem('eslamDataBackup', JSON.stringify(database));
-            
-            // 3. تحديث الواجهة
-            render();
-            
-            alert("🎉 تم إرسال العمل بنجاح للسيرفر! ✨");
-            
-        } catch (error) {
-            console.error("خطأ أثناء النشر:", error);
-            alert("❌ حدث خطأ أثناء الاتصال بالسيرفر، لكن تم الحفظ محلياً.");
-        } finally {
-            // إعادة النموذج
-            saveBtn.innerHTML = originalText;
-            saveBtn.disabled = false;
-            document.body.classList.remove('loading');
-            document.getElementById('adminPanel').style.display = 'none';
-            document.getElementById('adminPass').value = '';
-            document.getElementById('itemTitle').value = '';
-            document.getElementById('itemImg').value = '';
-            document.getElementById('itemContent').value = '';
-        }
-    }
-
-    // عرض البيانات
-    function render(data = database) {
-        const grid = document.getElementById('mainGrid');
-        if (data.length === 0) {
-            grid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #666;">
-                    <i class="fas fa-magic" style="font-size: 4em; color: var(--magic); margin-bottom: 20px;"></i>
-                    <h3>لا توجد أعمال بعد ✨</h3>
-                    <p>كن أول من يضيف قصة سحرية!</p>
-                </div>
-            `;
-            return;
-        }
-        
-        grid.innerHTML = data.map(item => `
-            <div class="card">
-                <div class="card-img" style="background-image: url('${item.image}')"></div>
-                <div style="padding:25px;">
-                    <span class="tag">${item.category}</span>
-                    <h3 style="margin:15px 0 20px 0; color:var(--dark); font-size:1.4em;">${item.title}</h3>
-                    <button onclick="openItem(${item.id})" class="btn">
-                        <i class="fas fa-eye"></i> إقرأ القصة السحرية
-                    </button>
-                    <button onclick="deleteItem(${item.id})" class="btn btn-danger">
-                        <i class="fas fa-trash"></i> حذف
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // فلترة المحتوى
-    function filterContent(cat, el) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        if (cat === 'الكل') render(database);
-        else render(database.filter(i => i.category === cat));
-    }
-
-    // فتح القصة
-    function openItem(id) {
-        const item = database.find(i => i.id === id);
-        if (item) {
-            document.getElementById('viewTitle').innerHTML = item.title + ' ✨';
-            document.getElementById('viewText').innerText = item.content;
-            document.getElementById('viewModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    // إغلاق المودال
-    function closeModal() { 
-        document.getElementById('viewModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    // حذف عنصر
-    function deleteItem(id) {
-        const pass = prompt("🔐 كلمة المرور للحذف:");
-        if(pass === PASS) {
-            database = database.filter(i => i.id !== id);
-            localStorage.setItem('eslamDataBackup', JSON.stringify(database));
-            render();
-            alert("✅ تم الحذف بنجاح!");
-        } else {
-            alert("❌ كلمة المرور خاطئة!");
-        }
-    }
-
-    // تبديل لوحة الإدارة
-    function toggleAdmin() {
-        const panel = document.getElementById('adminPanel');
-        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        if (panel.style.display === 'block') {
-            setTimeout(() => document.getElementById('adminPass').focus(), 300);
-        }
-    }
-
-    // الساعة والتاريخ
+    // الساعة والتاريخ بتوقيت مصر
     function updateClock() {
         const now = new Date();
+        
+        // ضبط التوقيت على مصر UTC+2/+3
         const egyptTime = new Date(now.toLocaleString("en-US", {timeZone: "Africa/Cairo"}));
         
         const timeString = egyptTime.toLocaleTimeString('ar-EG', {
@@ -756,6 +627,103 @@
         document.getElementById('clockDay').textContent = 'مصر 🇪🇬';
     }
 
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleAdmin() {
+        const panel = document.getElementById('adminPanel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        if (panel.style.display === 'block') {
+            document.getElementById('adminPass').focus();
+        }
+    }
+
+    function saveData() {
+        const passInput = document.getElementById('adminPass').value;
+        if(passInput !== PASS) {
+            alert("❌ كلمة المرور غير صحيحة!\n💡 تأكد من كتابة: / #$#$");
+            document.getElementById('adminPass').style.borderColor = '#ff4444';
+            setTimeout(() => {
+                document.getElementById('adminPass').style.borderColor = '';
+            }, 2000);
+            return;
+        }
+        
+        const newItem = {
+            category: document.getElementById('itemCat').value,
+            title: document.getElementById('itemTitle').value,
+            image: document.getElementById('itemImg').value || `https://picsum.photos/400/250?random=${Date.now()}`,
+            content: document.getElementById('itemContent').value,
+            id: Date.now()
+        };
+
+        if(!newItem.title || !newItem.content) {
+            alert("⚠️ يرجى كتابة العنوان والنص الكامل!");
+            return;
+        }
+
+        database.push(newItem);
+        localStorage.setItem('eslamData', JSON.stringify(database));
+        alert("🎉 تم النشر بنجاح! ✨ العمل الآن في عالم الأحلام");
+        document.getElementById('adminPanel').style.display = 'none';
+        document.getElementById('adminPass').value = '';
+        document.getElementById('itemTitle').value = '';
+        document.getElementById('itemImg').value = '';
+        document.getElementById('itemContent').value = '';
+        render();
+    }
+
+    function render(data = database) {
+        const grid = document.getElementById('mainGrid');
+        grid.innerHTML = data.map(item => `
+            <div class="card">
+                <div class="card-img" style="background-image: url('${item.image}')"></div>
+                <div class="card-body" style="padding:25px;">
+                    <span class="tag">${item.category}</span>
+                    <h3 style="margin:15px 0 20px 0; color:var(--dark); font-size:1.4em;">${item.title}</h3>
+                    <button onclick="openItem(${item.id})" class="btn" style="width:100%; margin-bottom:10px;">
+                        <i class="fas fa-eye"></i> إقرأ القصة السحرية
+                    </button>
+                    <button onclick="deleteItem(${item.id})" style="color:#ff6b6b; background:none; border:none; width:100%; font-size:12px; cursor:pointer; font-weight:600;">
+                        <i class="fas fa-trash"></i> حذف
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filterContent(cat, el) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        if (cat === 'الكل') render(database);
+        else render(database.filter(i => i.category === cat));
+    }
+
+    function openItem(id) {
+        const item = database.find(i => i.id === id);
+        document.getElementById('viewTitle').innerHTML = item.title + ' ✨';
+        document.getElementById('viewText').innerText = item.content;
+        document.getElementById('viewModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() { 
+        document.getElementById('viewModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function deleteItem(id) {
+        const pass = prompt("🔐 كلمة المرور للحذف (نفس كلمة النشر):");
+        if(pass === PASS) {
+            database = database.filter(i => i.id !== id);
+            localStorage.setItem('eslamData', JSON.stringify(database));
+            render();
+            alert("✅ تم الحذف بنجاح!");
+        } else {
+            alert("❌ كلمة المرور خاطئة!");
+        }
+    }
+
     // إغلاق المودال عند الضغط خارجها
     window.onclick = function(event) {
         const modal = document.getElementById('viewModal');
@@ -765,9 +733,7 @@
     }
 
     // تشغيل الموقع
-    setInterval(updateClock, 1000);
-    updateClock();
-    loadData(); // تحميل البيانات عند بدء التشغيل
+    render();
 </script>
 </body>
 </html>
