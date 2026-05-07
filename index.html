@@ -87,13 +87,15 @@
             height: 100%;
         }
 
-        .flag {
-            height: 40px;
-            margin: 0 20px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-            animation: flagWave 2s ease-in-out infinite alternate;
-        }
+    .flag {
+    width: 70px;
+    height: 40px;
+    margin: 0 20px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    animation: flagWave 2s ease-in-out infinite alternate;
+}
 
         @keyframes scrollFlags {
             0% { transform: translateX(100%); }
@@ -234,7 +236,7 @@
         }
 
         input[type="password"] {
-            font-family: 'Arial', sans-serif !important;
+            font-family: 'Arial', sans-serif! important;
             font-size: 18px;
             letter-spacing: 4px;
             -webkit-text-security: disc;
@@ -271,7 +273,7 @@
         }
 
         .card:hover::before { transform: scaleX(1); }
-        .card:hover { 
+        .card  hover { 
             transform: translateY(-15px) rotateX(5deg);
             box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         }
@@ -428,7 +430,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .btn:hover {
+        .btn: hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
@@ -462,6 +464,7 @@
 <!-- شريط الأعلام العربية -->
 <div class="flags-bar">
     <div class="flags-scroll">
+
         <!-- علم مصر -->
         <div class="flag" style="background: linear-gradient(to bottom, #CE1126 0%, #CE1126 33.33%, #FFF 33.33%, #FFF 66.66%, #000 66.66%, #000 100%);"></div>
         <!-- علم السعودية -->
@@ -579,7 +582,7 @@
 </footer>
 
 <script>
-    const PASS = "/ #$#$"; // كلمة السر المخفية والمحدثة
+   
     
     // محتوى افتراضي
     const defaultData = [
@@ -601,77 +604,25 @@
 
     let database = JSON.parse(localStorage.getItem('eslamData')) || defaultData;
 
-    // الساعة والتاريخ بتوقيت مصر
-    function updateClock() {
-        const now = new Date();
-        
-        // ضبط التوقيت على مصر UTC+2/+3
-        const egyptTime = new Date(now.toLocaleString("en-US", {timeZone: "Africa/Cairo"}));
-        
-        const timeString = egyptTime.toLocaleTimeString('ar-EG', {
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        });
-        
-        const dateString = egyptTime.toLocaleDateString('ar-EG', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        document.getElementById('clockTime').textContent = timeString;
-        document.getElementById('clockDate').textContent = dateString;
-        document.getElementById('clockDay').textContent = 'مصر 🇪🇬';
-    }
 
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    function toggleAdmin() {
-        const panel = document.getElementById('adminPanel');
-        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        if (panel.style.display === 'block') {
-            document.getElementById('adminPass').focus();
-        }
-    }
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('ar-EG', { timeZone: 'Africa/Cairo', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateString = now.toLocaleDateString('ar-EG', { timeZone: 'Africa/Cairo', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('clockTime').textContent = timeString;
+    document.getElementById('clockDate').textContent = dateString;
+    document.getElementById('clockDay').textContent = 'مصر 🇪🇬';
+}
 
-    function saveData() {
-        const passInput = document.getElementById('adminPass').value;
-        if(passInput !== PASS) {
-            alert("❌ كلمة المرور غير صحيحة!\n💡 تأكد من كتابة: / #$#$");
-            document.getElementById('adminPass').style.borderColor = '#ff4444';
-            setTimeout(() => {
-                document.getElementById('adminPass').style.borderColor = '';
-            }, 2000);
-            return;
-        }
-        
-        const newItem = {
-            category: document.getElementById('itemCat').value,
-            title: document.getElementById('itemTitle').value,
-            image: document.getElementById('itemImg').value || `https://picsum.photos/400/250?random=${Date.now()}`,
-            content: document.getElementById('itemContent').value,
-            id: Date.now()
-        };
+setInterval(updateClock, 1000);
+updateClock();
 
-        if(!newItem.title || !newItem.content) {
-            alert("⚠️ يرجى كتابة العنوان والنص الكامل!");
-            return;
-        }
 
-        database.push(newItem);
-        localStorage.setItem('eslamData', JSON.stringify(database));
-        alert("🎉 تم النشر بنجاح! ✨ العمل الآن في عالم الأحلام");
-        document.getElementById('adminPanel').style.display = 'none';
-        document.getElementById('adminPass').value = '';
-        document.getElementById('itemTitle').value = '';
-        document.getElementById('itemImg').value = '';
-        document.getElementById('itemContent').value = '';
-        render();
-    }
+   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSSfc0JTSPZmADMDuCCZWzradbYY2-8LpcHkkhY-CF6jl246WrvCRBHVlLp-7ywNYolg/exec";
+
+
+
 
     function render(data = database) {
         const grid = document.getElementById('mainGrid');
@@ -712,17 +663,29 @@
         document.body.style.overflow = 'auto';
     }
 
-    function deleteItem(id) {
-        const pass = prompt("🔐 كلمة المرور للحذف (نفس كلمة النشر):");
-        if(pass === PASS) {
-            database = database.filter(i => i.id !== id);
-            localStorage.setItem('eslamData', JSON.stringify(database));
-            render();
-            alert("✅ تم الحذف بنجاح!");
-        } else {
-            alert("❌ كلمة المرور خاطئة!");
-        }
+
+function deleteItem(id) {
+
+    const pass = prompt("🔐 كلمة المرور للحذف:");
+
+    if (!pass) {
+        alert("❌ تم إلغاء الحذف");
+        return;
     }
+
+    if (pass !== "1234") {
+        alert("❌ كلمة المرور خاطئة!");
+        return;
+    }
+
+    database = database.filter(i => i.id !== id);
+
+    localStorage.setItem('eslamData', JSON.stringify(database));
+
+    render();
+
+    alert("✅ تم الحذف بنجاح!");
+}
 
     // إغلاق المودال عند الضغط خارجها
     window.onclick = function(event) {
@@ -734,6 +697,23 @@
 
     // تشغيل الموقع
     render();
+    
+    // دالة لجلب البيانات من شيت جوجل عند بداية تحميل الصفحة
+async function loadDataFromSheet() {
+    try {
+        const response = await fetch(SCRIPT_URL);
+        const data = await response.json();
+        if (data && data.length > 0) {
+            database = data; // تحديث قاعدة البيانات بالبيانات القادمة من جوجل
+            render();
+        }
+    } catch (err) {
+        console.log("سيتم الاعتماد على البيانات المحلية حالياً");
+    }
+}
+
+// تشغيل جلب البيانات فوراً
+loadDataFromSheet();
 </script>
 </body>
-</html>
+</html> 
